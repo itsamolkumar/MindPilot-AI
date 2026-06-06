@@ -6,6 +6,7 @@ import { Loader2, Save } from "lucide-react";
 import { DEFAULT_CHECK_IN, createCheckIn, saveAnalysis, saveCheckIn } from "@/lib/storage";
 import { analyzeJournalFallback } from "@/lib/journalFallback";
 import { sanitizeText } from "@/lib/sanitize";
+import { RangeField } from "@/components/forms/RangeField";
 
 const sliderFields = [
   { name: "mood", label: "Mood", min: 1, max: 10 },
@@ -85,27 +86,23 @@ export default function CheckInPage() {
           </div>
         ) : null}
 
-        <div className="grid gap-5 md:grid-cols-2">
+        <fieldset className="grid gap-5 md:grid-cols-2" aria-labelledby="wellness-sliders-title">
+          <legend id="wellness-sliders-title" className="sr-only">
+            Wellness sliders
+          </legend>
           {sliderFields.map((field) => (
-            <label key={field.name} className="rounded-lg border border-ink/10 bg-white p-4">
-              <span className="flex items-center justify-between gap-3">
-                <span className="text-sm font-semibold text-ink">{field.label}</span>
-                <span className="rounded-md bg-mist px-2 py-1 text-sm font-bold text-ink">
-                  {form[field.name]}
-                </span>
-              </span>
-              <input
-                className="mt-4 w-full accent-fern"
-                type="range"
-                min={field.min}
-                max={field.max}
-                step={field.step || 1}
-                value={form[field.name]}
-                onChange={(event) => updateField(field.name, event.target.value)}
-              />
-            </label>
+            <RangeField
+              key={field.name}
+              name={field.name}
+              label={field.label}
+              min={field.min}
+              max={field.max}
+              step={field.step}
+              value={form[field.name]}
+              onChange={(value) => updateField(field.name, value)}
+            />
           ))}
-        </div>
+        </fieldset>
 
         <label className="mt-5 block">
           <span className="text-sm font-semibold text-ink">Journal Entry</span>

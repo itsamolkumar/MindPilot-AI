@@ -49,6 +49,8 @@ describe("AI recommendation engine", () => {
     expect(coach.plan3Day.length).toBeGreaterThan(0);
     expect(coach.plan7Day.length).toBeGreaterThan(0);
     expect(coach.risks.burnout).toBe("Critical");
+    expect(coach.emotionalOutlook).toBeTruthy();
+    expect(coach.forecast.tomorrow.emotionalOutlook).toBeTruthy();
   });
 
   it("returns a fallback summary when history is empty", () => {
@@ -65,5 +67,13 @@ describe("AI recommendation engine", () => {
     expect(commandResult.title).toBe("Burnout Risk");
     expect(commandResult.details[0]).toContain("Burnout risk");
     expect(commandResult.text).toContain("Burnout risk is");
+  });
+
+  it("includes emotional outlook in forecast command results", () => {
+    const coach = generateCoachResponse(sampleEntries, sampleAnalyses);
+    const forecastResult = parseCoachCommand("/forecast", coach);
+    expect(forecastResult.title).toBe("Forecast");
+    expect(forecastResult.text).toContain("Tomorrow mood forecast");
+    expect(forecastResult.text).toContain("(");
   });
 });

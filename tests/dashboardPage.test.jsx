@@ -17,6 +17,7 @@ describe("Dashboard rendering", () => {
     await waitFor(() => expect(screen.getByText(/Today’s wellness overview/i)).toBeInTheDocument());
     expect(screen.getByText(/AI Wellness Coach/i)).toBeInTheDocument();
     expect(screen.getByText(/Burnout Risk/i)).toBeInTheDocument();
+    expect(screen.getByText(/Sentiment/i)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Daily check-in/i })).toBeInTheDocument();
   });
 });
