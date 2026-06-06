@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Loader2, Save } from "lucide-react";
 import { DEFAULT_CHECK_IN, createCheckIn, saveAnalysis, saveCheckIn } from "@/lib/storage";
 import { analyzeJournalFallback } from "@/lib/journalFallback";
+import { sanitizeText } from "@/lib/sanitize";
 
 const sliderFields = [
   { name: "mood", label: "Mood", min: 1, max: 10 },
@@ -34,7 +35,8 @@ export default function CheckInPage() {
     setLoading(true);
 
     try {
-      const checkIn = createCheckIn(form);
+      const sanitizedEntry = sanitizeText(form.journalEntry);
+      const checkIn = createCheckIn({ ...form, journalEntry: sanitizedEntry });
       saveCheckIn(checkIn);
 
       let analysis = analyzeJournalFallback(checkIn.journalEntry);

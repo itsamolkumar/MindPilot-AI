@@ -1,10 +1,11 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { analyzeJournalFallback } from "@/lib/journalFallback";
+import { sanitizeText, safePromptString } from "@/lib/sanitize";
 
 export async function POST(request) {
   try {
     const body = await request.json();
-    const journalEntry = String(body?.journalEntry || "").trim();
+    const journalEntry = sanitizeText(body?.journalEntry);
 
     if (!journalEntry) {
       return Response.json({
@@ -48,7 +49,7 @@ Rules:
 - Keep recommendations practical, supportive, and non-clinical.
 
 Journal:
-${journalEntry}
+${safePromptString(journalEntry)}
 `;
 
     const result = await model.generateContent(prompt);
