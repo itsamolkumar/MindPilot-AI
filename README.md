@@ -6,7 +6,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38bdf8?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Gemini](https://img.shields.io/badge/Gemini_AI-1.5_Flash-blue?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
 
-**MindPilot AI** is a privacy-first, local-first wellness dashboard specifically built for students to help manage academic pressure, track key wellness signals, predict burnout, and receive supportive, non-clinical recommendations. 
+**MindPilot AI** is a privacy-first, local-first wellness dashboard built for students to manage academic pressure, track key wellness signals, spot burnout early, and receive empathetic, non-clinical recommendations.
 
 🔗 **Live Application:** [https://mind-pilot-ai.vercel.app/](https://mind-pilot-ai.vercel.app/)
 
@@ -120,6 +120,19 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 │   └── recoveryPlanEngine.js # Personalized recovery recommendation builder
 ├── package.json              # Project dependencies and script runner
 └── next.config.mjs           # NextJS configuration settings
+
+---
+
+## 🤝 Contributing
+
+We welcome improvements, tests, and accessibility fixes. Quick start:
+
+1. Fork the repo and create a feature branch.
+2. Run tests locally: `npm install` then `npm test`.
+3. Keep changes focused and add tests for new behavior.
+4. Open a PR describing the change and include screenshots or test output when relevant.
+
+Please avoid committing large build artifacts or the `coverage/lcov-report` directory.
 ```
 
 ---
